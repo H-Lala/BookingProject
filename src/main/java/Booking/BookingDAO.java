@@ -78,10 +78,6 @@ public class BookingDAO implements DAO<Booking> {
         return result;
     }
 
-    @Override
-    public void update(Booking item) {
-
-    }
 
     @Override
     public void save(Booking item) {
