@@ -1,14 +1,21 @@
 package DAO;
 
 import java.util.HashSet;
+import java.util.List;
 
 public interface DAO<T> {
 
-    void store(T data);
-    T get(int ID);
-     void cancel(int ID);
+   void SaveData(String file);
+   void LoadData(List<T> list);
+   void ReadData(String file);
 
-      void search();   //look at this
+   void save(T item);
+   T get(int ID);
+   List<T> getAll();
+   boolean delete(int ID);
+
+
+
 
 
 }
