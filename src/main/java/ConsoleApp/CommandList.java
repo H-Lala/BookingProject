@@ -7,5 +7,12 @@ public enum CommandList {
     BookFlight,
     CancelBooking,
     MyFlights,
+    Help,
     Exits;
+
+    public static CommandList valueOf(int i) {
+        return CommandList.valueOf(i);
+    }
+
+
 }
