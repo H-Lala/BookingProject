@@ -1,52 +1,58 @@
 package ConsoleApp;
 
-import Booking.Person;
-import Enums.Gender;
+import java.util.List;
 
-public class UserController extends Person {
-    private int UserId;
-    private String UserName;
-    private int password;
+public class UserController {
+    private UserService userService;
 
-
-    public void setUserId(int userId) {
-        UserId = userId;
+    public UserController() {
+        userService = new UserService();
     }
 
-    public int getUserId() {
-        return UserId;
+    public UserService getUserService() {
+        return userService;
+
     }
 
-    public void setUserName(String userName) {
-        UserName = userName;
+    public List<Users> getAllUsers() {
+        return userService.getAllUsers();
     }
 
-    public String getUserName() {
-        return UserName;
+    public void showUsers() {
+        userService.getAllUsers().forEach(System.out::println);
     }
 
-    public void setPassword(int password) {
-        this.password = password;
+    public void save(Users users) {
+        userService.save(users);
     }
 
-    public int getPassword() {
-        return password;
+    public void SaveData(String file) {
+        userService.SaveData(file);
     }
 
-   public UserController(int UserID, String UserName, int password, String name , String surname, int date0fbirth, Gender gender){
-       super(name,surname,date0fbirth,gender);
-       this.UserId=UserID;
-       this.UserName=UserName;
-       this.password=password;
-   }
+    public void ReadData(String file) {
+        userService.ReadData(file);
+    }
 
-    @Override
-    public String toString() {
-        return new StringBuilder().append("User{").append(" User ID: ").append(UserId).append(" User Name: ").
-                append(UserName).append(" Password:").
-                append(password).append(" Name: ").
-                append(getName()).append("Surname:").append(getSurname()).
-                append("Birth Date:").append(getDate0fBirth()).append("Gender:").append(getGender()).append("}").
-                toString();
+    public void delete(int ID) {
+        userService.delete(ID);
+    }
+
+    public int counts() {
+        return userService.getAllUsers().size();
+    }
+
+    public Users userById(int ID) {
+        if (ID < 0 || ID > this.userService.getAllUsers().size()) {
+            throw new IllegalArgumentException("Invalid ID");
+        } else {
+            return userService.getAllUsers().get(ID);
+        }
+    }
+
+    public Users userByReg(String UserName, String password) {
+        return userService.getAllUsers().stream().filter(
+                users -> (users.getUserName().equalsIgnoreCase(UserName) && users.getPassword().equals(password))
+        ).findAny().orElse(null);
     }
 }
