@@ -23,26 +23,33 @@ public class UserService {
         userDAO.save(users);
     }
 
-    public void SaveData(String file){
+    public void delete(int ID) {
+        userDAO.delete(ID);
+    }
+
+    public void SaveData(String file) {
         userDAO.SaveData(file);
     }
-    public void ReadData(String file){
+
+    public void ReadData(String file) {
         userDAO.ReadData(file);
     }
-    public int counts(){
+
+    public int counts() {
         return userDAO.getAll().size();
     }
-    public Users usersById(int ID){
-        if(ID<0|| ID>this.userDAO.getAll().size()){
+
+    public Users usersById(int ID) {
+        if (ID < 0 || ID > this.userDAO.getAll().size()) {
             throw new IllegalArgumentException("Invalid ID");
-        }
-        else {
+        } else {
             return userDAO.get(ID);
         }
     }
-    public Users usersByReg(String UserName, String password){
-             return userDAO.getAll().stream().filter(user -> (user.getUserName().equalsIgnoreCase(UserName) &&
-                     user.getPassword().equals(password))).findAny()
-                     .orElse(null);
+
+    public Users usersByReg(String UserName, String password) {
+        return userDAO.getAll().stream().filter(user -> (user.getUserName().equalsIgnoreCase(UserName) &&
+                user.getPassword().equals(password))).findAny()
+                .orElse(null);
     }
 }
