@@ -10,9 +10,6 @@ public enum CommandList {
     Help,
     Exits;
 
-    public static CommandList valueOf(int i) {
-        return CommandList.valueOf(i);
-    }
 
 
 }
