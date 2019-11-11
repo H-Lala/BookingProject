@@ -21,6 +21,7 @@ public class Console {
         String choice;
         System.out.printf("Welcome, Please choose your operation from menu\n");
         MainMenu();
+        System.out.println("Enter your choice");
         choice = sc.nextLine();
         CommandList command = CommandParser.Parse(choice);
         do {
@@ -43,7 +44,7 @@ public class Console {
                     System.exit(0);
 
             }
-
+            break;
 
         } while (true);
     }

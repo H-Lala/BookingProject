@@ -80,6 +80,6 @@ public class Booking implements Serializable {
     public String toString() {
         return
                 String.format("Booking{Counts of Tickets:%dData Time: %s", tickets,
-                        bookingDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")));
+                        bookingDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")));
     }
 }

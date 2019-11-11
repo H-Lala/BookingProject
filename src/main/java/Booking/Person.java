@@ -38,6 +38,10 @@ public abstract class Person implements Serializable {
         return gender;
     }
 
+    public int getDate0fBirth() {
+        return date0fBirth;
+    }
+
     public Person(String name, String surname, int date0fBirth, Gender gender) {
         this.name = name;
         this.surname = surname;
