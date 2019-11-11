@@ -7,7 +7,7 @@ import java.io.*;
 import java.util.List;
 import java.util.logging.Logger;
 
-public class UserDAO implements DAO<Users> {
+public class UserDAO implements User_DAO<Users> {
     private static Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
     private List<Users> users;
 
@@ -66,11 +66,11 @@ public class UserDAO implements DAO<Users> {
     }
 
     public void save(Users item) {
-        if (item == null) {
+        if (item.equals(null)) {
             logger.info("You are trying save null user");
-            throw new NullPointerException();
+           throw new NullPointerException();
         }
-        if (this.users.contains(item)) {
+       else if (this.users.contains(item)) {
             logger.info("Editing of user information");
             this.users.set(users.indexOf(item), item);
         } else {
@@ -97,6 +97,7 @@ public class UserDAO implements DAO<Users> {
         logger.info("All users");
         return this.users;
     }
+
 
     @Override
     public boolean delete(int ID) {

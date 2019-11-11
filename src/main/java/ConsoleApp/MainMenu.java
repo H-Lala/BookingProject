@@ -5,12 +5,14 @@ import Enums.Gender;
 import Users.Users;
 import Users.UserController;
 import Users.UserDAO;
+import Users.UserService;
 
 import java.util.Scanner;
 
 public class MainMenu {
 
 
+    private static UserService userService = new UserService();
     private static UserController userController = new UserController();
     private static BookingController bookingController = new BookingController();
 
@@ -113,6 +115,6 @@ public class MainMenu {
         System.out.println("Enter your password");
         password = sc.nextLine();
         Users NewUser = new Users(name, password);
-        userController.save(NewUser);
+        userService.save(NewUser);
     }
 }

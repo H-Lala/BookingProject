@@ -6,9 +6,9 @@ import DAO.DAO;
 import java.util.List;
 
 public class UserService {
-    private DAO<Users> userDAO = new UserDAO();
+    private User_DAO<Users> userDAO = new UserDAO();
 
-    public DAO getUserDAO() {
+    public User_DAO getUserDAO() {
         return userDAO;
     }
 
@@ -20,18 +20,14 @@ public class UserService {
         userDAO.getAll().forEach(System.out::println);
     }
 
-    public void Save(Users users) {
+    public void save(Users users) {
 
         if (users.getName() != "" && users.getPassword() != "") {
-            if (userDAO.getAll()
-                    .stream()
-                    .filter(e -> (e.getName() == users.getPassword()))
-                    .count() == 0) {
-                userDAO.save(users);
-            } else {
-                new IllegalArgumentException();
-            }
+            userDAO.save(users);
+        } else {
+            new IllegalArgumentException();
         }
+
     }
 
     public void delete(int ID) {

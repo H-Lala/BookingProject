@@ -24,7 +24,7 @@ public class UserController {
     }
 
     public void save(Users item) {
-        userService.Save(item);
+        userService.save(item);
     }
 
     public void SaveData(String file) {
