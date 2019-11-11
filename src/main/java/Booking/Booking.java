@@ -1,6 +1,7 @@
 package Booking;
 
-import Flights.Flights;
+import Flights.Flight;
+import Users.Users;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -12,8 +13,8 @@ public class Booking implements Serializable {
 
     private int tickets;
     private LocalDateTime bookingDate = LocalDateTime.now();
-    private List<Person> passengers = new ArrayList<>();
-    private List<Flights> flights = new ArrayList<>();
+    private List<Users> passengers = new ArrayList<>();
+    private List<Flight> flights = new ArrayList<>();
 
 
     public void setTickets(int tickets) {
@@ -24,20 +25,20 @@ public class Booking implements Serializable {
         return tickets;
     }
 
-    public void setFlights(List<Flights> flights) {
+    public void setFlights(List<Flight> flights) {
         this.flights = flights;
 
     }
 
-    public List<Flights> getFlights() {
+    public List<Flight> getFlights() {
         return flights;
     }
 
-    public void setPassenger(List<Person> passengers) {
+    public void setPassenger(List<Users> passengers) {
         this.passengers = passengers;
     }
 
-    public List<Person> getPassengers() {
+    public List<Users> getPassengers() {
         return passengers;
     }
 
@@ -46,14 +47,14 @@ public class Booking implements Serializable {
         return bookingDate;
     }
 
-    public Booking(List<Flights> flights, List<Person> passenger, int tickets) {
+    public Booking(List<Flight> flights, List<Users> passenger, int tickets) {
         this.flights = flights;
         this.passengers = passenger;
         this.tickets = tickets;
 
     }
 
-    public boolean addPerson(Person passenger) {
+    public boolean addPerson(Users passenger) {
         if (!passengers.contains(passenger) &&
                 passenger != null) {
             passengers.add(passenger);
@@ -61,7 +62,7 @@ public class Booking implements Serializable {
         } else return false;
     }
 
-    public boolean deletePassenger(Person passenger) {
+    public boolean deletePassenger(Users passenger) {
         if (!passengers.contains(passenger)) return false;
         passengers.remove(passenger);
         return true;

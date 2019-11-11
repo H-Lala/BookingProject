@@ -1,6 +1,6 @@
-package ConsoleApp;
+package Users;
 
-import DAO.DAO;
+import Users;
 
 import java.util.List;
 

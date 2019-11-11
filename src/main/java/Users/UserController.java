@@ -1,4 +1,5 @@
-package ConsoleApp;
+package Users;
+
 
 import java.util.List;
 
@@ -54,5 +55,13 @@ public class UserController {
         return userService.getAllUsers().stream().filter(
                 users -> (users.getUserName().equalsIgnoreCase(UserName) && users.getPassword().equals(password))
         ).findAny().orElse(null);
+    }
+
+    public boolean login(Users user, String password) {
+        if(!userService.getAllUsers().contains(user)  )
+        {
+            throw new IllegalArgumentException("Wrong password");
+        }
+   return true;
     }
 }
