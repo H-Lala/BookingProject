@@ -26,7 +26,7 @@ public class FlightDAO implements DAO<Flight> {
     @Override
     public void save(Flight item)//creating
     {
-        Flight flight=new Flight();//??????????
+        Flight flight=new Flight(item.getID(),item.getDestination(),item.getDepartureTime(),item.getSeats());//??????????
         flightList.add(flight);
     }
 

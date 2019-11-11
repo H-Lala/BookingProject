@@ -1,11 +1,13 @@
 package Flights;
 
+import java.util.Date;
 import java.util.List;
 import java.text.SimpleDateFormat;
 import java.util.stream.Collectors;
 
 public class FlightService {
     private FlightDAO flightDao=new FlightDAO();
+
     public void createNew(Flight item){
         flightDao.save(item);
     }
@@ -26,12 +28,12 @@ public class FlightService {
         getAllFlights().stream().forEach(System.out::println);
     }
 
-    public List<Flight> requestFlight(String destination, String date, int numOfPassengers){
+    public List<Flight> requestFlight(String destination, Date date, int numOfPassengers){
         return getAllFlights().stream().filter(x->x.getDestination().equalsIgnoreCase(destination)
         && x.getSeats()>=numOfPassengers
         && x.getDepartureTime().equals(date)).collect(Collectors.toList());
     }
-    public void displayRequestedFlights(String destination, String departure, int numOfPassengers) {
+    public void displayRequestedFlights(String destination, Date departure, int numOfPassengers) {
         requestFlight(destination, departure, numOfPassengers)
                 .stream()
                 .forEach(System.out::println);
