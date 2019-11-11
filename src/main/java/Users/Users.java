@@ -2,18 +2,16 @@ package Users;
 
 import Enums.Gender;
 
-public class Users  {
-    private int UserId;
+public class Users {
     private String UserName;
     private String password;
     private String name;
     private String surname;
-    private int date0fBirth;
     private Gender gender;
 
-    public Users(String userName, String password) {
-        this.password=password;
-        this.UserName=userName;
+    public Users(String name, String password) {
+        this.password = password;
+        this.name = name;
     }
 
 
@@ -26,24 +24,16 @@ public class Users  {
         return name;
     }
 
-       public void setSurname(String surname) {
+    public void setSurname(String surname) {
         this.surname = surname;
     }
 
-        public String getSurname() {
+    public String getSurname() {
         return surname;
     }
 
 
-    public void setDate0fBirth(int date0fBirth) {
-        this.date0fBirth = date0fBirth;
-    }
-
-      public int getDate0fBirth() {
-        return date0fBirth;
-    }
-
-      public void setGender(Gender gender) {
+    public void setGender(Gender gender) {
         this.gender = gender;
     }
 
@@ -52,13 +42,6 @@ public class Users  {
         return gender;
     }
 
-    public void setUserId(int userId) {
-        UserId = userId;
-    }
-
-    public int getUserId() {
-        return UserId;
-    }
 
     public void setUserName(String userName) {
         UserName = userName;
@@ -68,7 +51,7 @@ public class Users  {
         return UserName;
     }
 
-    public void setPassword(    String password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 
@@ -77,16 +60,17 @@ public class Users  {
     }
 
 
-   public Users(int UserID, String UserName, String password){
-       this.UserId=UserID;
-       this.UserName=UserName;
-       this.password=password;
-   }
+    public Users(String name, String surname, String password,Gender gender) {
+        this.name=name;
+        this.surname = surname;
+        this.password = password;
+        this.gender=gender;
+    }
 
     @Override
     public String toString() {
-        return new StringBuilder().append("User{").append(" User ID: ").append(UserId).append(" User Name: ").
-                append(UserName).append(" Password:").
+        return new StringBuilder().append("User{").append(" Name: ").append(name).append(" Surname: ").
+                append(surname).append(" Password:").
                 append(password).append(" Name: ").append("}").
                 toString();
     }

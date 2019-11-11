@@ -9,12 +9,13 @@ import java.util.logging.Logger;
 
 public class UserDAO implements DAO<Users> {
     private static Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
-
     private List<Users> users;
 
     public UserDAO(List<Users> users) {
         this.users = users;
     }
+
+
 
     public UserDAO() {
 
@@ -64,10 +65,9 @@ public class UserDAO implements DAO<Users> {
 
     }
 
-    @Override
     public void save(Users item) {
         if (item == null) {
-            logger.severe("You are trying save null user");
+            logger.info("You are trying save null user");
             throw new NullPointerException();
         }
         if (this.users.contains(item)) {

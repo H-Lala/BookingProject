@@ -23,8 +23,8 @@ public class UserController {
         userService.getAllUsers().forEach(System.out::println);
     }
 
-    public void save(Users users) {
-        userService.save(users);
+    public void save(Users item) {
+        userService.Save(item);
     }
 
     public void SaveData(String file) {
@@ -57,11 +57,5 @@ public class UserController {
         ).findAny().orElse(null);
     }
 
-    public boolean login(Users user, String password) {
-        if(!userService.getAllUsers().contains(user)  )
-        {
-            throw new IllegalArgumentException("Wrong password");
-        }
-   return true;
-    }
+
 }
