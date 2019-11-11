@@ -12,25 +12,30 @@ public class Flight {
     private int seats;
 
 
-    public Flight(int ID, String destination, String departureTime, int seats) {
+    public Flight(int ID, String destination, Date departureTime, int seats) {
         this.ID = ID;
         Destination = destination;
-        SimpleDateFormat formatter =new SimpleDateFormat("dd.mm.yyyy hh:mm");
+        /*SimpleDateFormat formatter =new SimpleDateFormat("dd.mm.yyyy hh:mm");
         try{
             this.departureTime = formatter.parse(departureTime);
         }
         catch(ParseException e){
             e.printStackTrace();
-        }
+        }*/
+        this.departureTime=departureTime;
         this.seats = seats;
     }
 
-    public Flight() {//????????(FLIGHT DAO)
+    /*public Flight() {//????????(FLIGHT DAO)
 
-    }
+    }*/
 
     public int getID() {
         return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public int getSeats() {
