@@ -38,6 +38,11 @@ public class FlightDAO implements DAO<Flight> {
 
     @Override
     public Flight get(int ID) {
+        return null;
+    }
+
+    @Override
+    public Flight get(String ID) {
         for (Flight flight : flightList) {
             if (flight.ID == ID) {
                 return flight;
@@ -53,8 +58,13 @@ public class FlightDAO implements DAO<Flight> {
 
     @Override
     public boolean delete(int ID) {
+        return false;
+    }
+
+    @Override
+    public boolean delete(String ID) {
         for (Flight flight : flightList) {
-            if (flight.ID == ID) {
+            if (flight.ID.equals(ID)) {
                 flightList.remove(flight);
                 return true;
             }
@@ -65,7 +75,7 @@ public class FlightDAO implements DAO<Flight> {
     @Override
     public void generate(Scanner sc) {
         while (sc.hasNext()) {
-            int ID = sc.nextInt();
+            String ID = sc.nextLine();
             java.lang.String Destination = sc.nextLine();
             java.lang.String Departure = sc.nextLine();
             int seats = sc.nextInt();

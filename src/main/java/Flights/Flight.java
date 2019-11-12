@@ -6,13 +6,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Flight {
-    public int ID;
+    public String ID;
     private  String Destination;
     private String departureTime;
     private int seats;
 
 
-    public Flight(int ID, String destination, String departureTime, int seats) {
+    public Flight(String ID, String destination, String departureTime, int seats) {
         this.ID = ID;
         Destination = destination;
         /*SimpleDateFormat formatter =new SimpleDateFormat("dd.mm.yyyy hh:mm");
@@ -30,11 +30,11 @@ public class Flight {
 
     }*/
 
-    public int getID() {
+    public String getID() {
         return ID;
     }
 
-    public void setID(int ID) {
+    public void setID(String ID) {
         this.ID = ID;
     }
 
