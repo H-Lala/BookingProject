@@ -1,8 +1,10 @@
 package Flights;
 
+import Booking.Booking;
 import DAO.DAO;
 //import com.sun.org.apache.xpath.internal.operations.String;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -15,16 +17,48 @@ public class FlightDAO implements DAO<Flight> {
 
     @Override
     public void SaveData(String file) {
+        try {
+            if (new File(file).getParentFile().mkdirs()) {
+                FileOutputStream fileOutput = new FileOutputStream(file);
+                ObjectOutputStream OutputStream = new ObjectOutputStream(fileOutput);
+                OutputStream.writeObject(flightList);
+                OutputStream.close();
+                fileOutput.close();
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
     @Override
     public void LoadData(List<Flight> list) {
-
+        if (flightList != null) {
+            flightList.forEach(this::save);
+        }
     }
 
     @Override
     public void ReadData(String file) {
+        List<Flight> flightList = null;
+        try {
+            FileInputStream FileInput = new FileInputStream(file);
+            ObjectInputStream InputStream = new ObjectInputStream(FileInput);
+            flightList = (List<Flight>) InputStream.readObject();
+            InputStream.close();
+            FileInput.close();
+            LoadData(flightList);
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
 
     }
 
