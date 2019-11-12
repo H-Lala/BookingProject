@@ -85,7 +85,6 @@ public class BookingDAO implements DAO<Booking> {
         throw new IllegalArgumentException("Invalid ID");
     }
 
-
     @Override
     public void save(Booking item) {
         if (booking0fList != null) {

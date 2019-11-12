@@ -1,9 +1,9 @@
 package ConsoleApp;
 
 public class CommandParser {
-  public static   CommandList[] commands = CommandList.values();
+  public static   ConsoleApp.CommandList[] commands = ConsoleApp.CommandList.values();
 
-   public  static CommandList Parse(String x) {
+   public  static ConsoleApp.CommandList Parse(String x) {
        switch (x){
            case "1":
                return commands[0]; //Online Board

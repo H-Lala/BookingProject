@@ -1,18 +1,12 @@
 package ConsoleApp;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import java.io.*;
 
 public class FileIO {
-    FileOutputStream fileOutputStream;
+    File FiLe = new File("/.data","flights.txt");
+    BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(FiLe));
 
-    {
-        try {
-            fileOutputStream = new FileOutputStream("C:\\Users\\User\\IdeaProjects\\BookingProject");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+
+    public FileIO() throws IOException {
     }
-
-
 }

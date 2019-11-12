@@ -26,6 +26,12 @@ public class Flight {
         this.seats = seats;
     }
 
+    public Flight(String id, String destination, String departure) {
+        this.ID=Integer.parseInt(id);
+        this.Destination=destination;
+        this.departureTime=departure;
+    }
+
     /*public Flight() {//????????(FLIGHT DAO)
 
     }*/

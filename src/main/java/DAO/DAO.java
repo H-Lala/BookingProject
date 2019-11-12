@@ -15,5 +15,7 @@ public interface DAO<T> {
    boolean delete(int ID);
 
 
+
+
     void generate(Scanner sc);
 }
