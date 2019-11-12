@@ -7,7 +7,7 @@ import java.util.Date;
 
 public class Flight {
     public int ID;
-    private  String Destination;
+    private String Destination;
     private String departureTime;
     private int seats;
 
@@ -15,26 +15,10 @@ public class Flight {
     public Flight(int ID, String destination, String departureTime, int seats) {
         this.ID = ID;
         Destination = destination;
-        /*SimpleDateFormat formatter =new SimpleDateFormat("dd.mm.yyyy hh:mm");
-        try{
-            this.departureTime = formatter.parse(departureTime);
-        }
-        catch(ParseException e){
-            e.printStackTrace();
-        }*/
-        this.departureTime=departureTime;
+        this.departureTime = departureTime;
         this.seats = seats;
     }
 
-    public Flight(int id, String destination, String departure) {
-        this.ID=id;
-        this.Destination=destination;
-        this.departureTime=departure;
-    }
-
-    /*public Flight() {//????????(FLIGHT DAO)
-
-    }*/
 
     public int getID() {
         return ID;
@@ -58,9 +42,9 @@ public class Flight {
 
     @Override
     public String toString() {
-        return "Flight Id: "+ID+"\t"
-                +"Destination: "+Destination+"\t"
-                +"Departure Time: "+departureTime+"\t"
-                +"Free Seats: "+seats;
+        return "Flight Id: " + ID + "\t"
+                + "Destination: " + Destination + "\t"
+                + "Departure Time: " + departureTime + "\t"
+                + "Free Seats: " + seats;
     }
 }

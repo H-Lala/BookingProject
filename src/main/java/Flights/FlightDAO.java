@@ -1,13 +1,10 @@
 package Flights;
 
 import DAO.DAO;
-//import com.sun.org.apache.xpath.internal.operations.String;
-
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
-import java.util.logging.SimpleFormatter;
+
 
 public class FlightDAO implements DAO<Flight> {
     List<Flight> flightList = new ArrayList<>();
@@ -37,16 +34,15 @@ public class FlightDAO implements DAO<Flight> {
     }
 
 
-
     @Override
     public Flight get(int ID) {
         for (Flight flight : flightList) {
             if (flight.ID == ID) {
-                return flight;
+                return flightList.get(ID);
             }
 
         }
-         throw new IllegalArgumentException("Invalid ID");
+        throw new IllegalArgumentException("Invalid ID");
     }
 
     @Override
@@ -55,11 +51,10 @@ public class FlightDAO implements DAO<Flight> {
     }
 
 
-
     @Override
     public boolean delete(int ID) {
         for (Flight flight : flightList) {
-            if (flight.ID==ID) {
+            if (flight.ID == ID) {
                 flightList.remove(flight);
                 return true;
             }
@@ -74,8 +69,9 @@ public class FlightDAO implements DAO<Flight> {
             sc.nextLine();
             String Destination = sc.nextLine();
             String Departure = sc.nextLine();
+            int counts = sc.nextInt();
 
-            Flight NewFlight = new Flight(ID, Destination, Departure);
+            Flight NewFlight = new Flight(ID, Destination, Departure, counts);
             flightList.add(NewFlight);
 
         }

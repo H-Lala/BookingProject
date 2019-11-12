@@ -4,19 +4,19 @@ package Users;
 import DAO.DAO;
 import Users.Users;
 import Users.User_DAO;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
 public class UserDAO implements User_DAO<Users> {
-    private static Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
-    private List<Users> users=new ArrayList<>();
+
+    private List<Users> users = new ArrayList<>();
 
     public UserDAO(List<Users> users) {
         this.users = users;
     }
-
 
 
     public UserDAO() {
@@ -26,7 +26,7 @@ public class UserDAO implements User_DAO<Users> {
 
     @Override
     public void SaveData(String file) {
-        logger.info("Saving information to file");
+
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(file);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
@@ -41,8 +41,8 @@ public class UserDAO implements User_DAO<Users> {
 
     @Override
     public void LoadData(List<Users> list) {
-        logger.info("Loading info");
-        if(users!=null){
+
+        if (users != null) {
             users.forEach(this::save);
         }
 
@@ -50,13 +50,13 @@ public class UserDAO implements User_DAO<Users> {
 
     @Override
     public void ReadData(String file) {
-        logger.info("Data from file");
+
         List<Users> ListLoaded = null;
         try {
             FileInputStream fileInputStream = new FileInputStream(file);
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
             ListLoaded = (List<Users>) objectInputStream.readObject();
-          LoadData(ListLoaded);
+            LoadData(ListLoaded);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -69,15 +69,14 @@ public class UserDAO implements User_DAO<Users> {
 
     public void save(Users item) {
         if (item.equals(null)) {
-            logger.info("You are trying save null user");
-           throw new NullPointerException();
-        }
-       else if (this.users.contains(item)) {
-            logger.info("Editing of user information");
+
+            throw new NullPointerException();
+        } else if (this.users.contains(item)) {
+
             users.set(users.indexOf(item), item);
         } else {
-            logger.info("Saving new user");
-            Users user = new Users(item.getName(),item.getPassword());
+
+            Users user = new Users(item.getName(), item.getPassword());
 
             users.add(item);
         }
@@ -86,9 +85,9 @@ public class UserDAO implements User_DAO<Users> {
 
     @Override
     public Users get(int ID) {
-        logger.info("User info by ID");
+
         if (this.users == null || ID < 0 || ID > this.users.size()) {
-            logger.info("Invalid ID ");
+
             throw new IllegalArgumentException("Something went wrong");
 
         } else {
@@ -98,7 +97,7 @@ public class UserDAO implements User_DAO<Users> {
 
     @Override
     public List<Users> getAll() {
-        logger.info("All users");
+
         return this.users;
     }
 
@@ -106,7 +105,7 @@ public class UserDAO implements User_DAO<Users> {
     @Override
     public boolean delete(int ID) {
         if (this.users == null || ID < 0 || ID > this.users.size()) {
-            logger.info("Invalid ID");
+
             throw new IllegalArgumentException("Something went wrong");
 
         } else {

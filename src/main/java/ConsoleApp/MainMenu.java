@@ -5,13 +5,10 @@ import Booking.BookingController;
 import Enums.Gender;
 import Flights.FlightController;
 import Users.Users;
+import Users.ByUs;
 import Users.UserController;
-import Users.UserDAO;
-import Users.UserService;
-
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.Date;
 import java.util.Scanner;
 
 public class MainMenu {
@@ -37,6 +34,8 @@ public class MainMenu {
     }
 
     public static void main(String[] args) throws FileNotFoundException {
+        ByUs.Message();
+        FlightsfromFile();
         login();
         Scanner sc = new Scanner(System.in);
         String choice;
@@ -49,7 +48,6 @@ public class MainMenu {
             CommandList command = CommandParser.Parse(choice);
             switch (command) {
                 case OnlineBoard:
-                    FlightsfromFile();
                     flightController.showAllFlights();
                     break;
                 case ShowTheFlightInfo:
@@ -62,9 +60,8 @@ public class MainMenu {
                             + "and number of passengers");
                     String Destination = sc.nextLine();
                     String DepartureTime = sc.nextLine();
-                    Date depTime = flightController.StringToDate(DepartureTime);
                     int numOfPassengers = sc.nextInt();
-                    flightController.showRequestedFlights(Destination, depTime, numOfPassengers);
+                    flightController.showRequestedFlights(Destination, DepartureTime, numOfPassengers);
                     break;
                 case BookFlight:
                     System.out.println("Please enter destinations");
@@ -73,7 +70,6 @@ public class MainMenu {
                     int tickets = sc.nextInt();
                     Booking NewBooking = new Booking(destination, tickets);
                     bookingController.save(NewBooking);
-                    //  bookingController.SaveData();
                     break;
                 case CancelBooking:
                     System.out.println("Please enter your ID");
@@ -81,6 +77,7 @@ public class MainMenu {
                     bookingController.delete(ID);
                     break;
                 case MyFlights:
+                    flightController.getAllFlights();
                     break;
                 case Help:
                     System.out.println("How can I help you?");
@@ -134,16 +131,17 @@ public class MainMenu {
         Gender gender = Gender.Female;
         System.out.println("Enter your name");
         name = sc.nextLine();
-        // System.out.println("Enter your surname");
-        //surname = sc.nextLine();
         System.out.println("Enter your password");
         password = sc.nextLine();
         Users NewUser = new Users(name, password);
         userController.save(NewUser);
+
     }
 
     public static void FlightsfromFile() throws FileNotFoundException {
         Scanner sc = new Scanner(new FileReader("C:/Users/User/IdeaProjects/BookingProject/src/main/java/Flights/FlightDatabase.txt"));
         flightController.generate(sc);
     }
+
+
 }

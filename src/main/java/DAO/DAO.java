@@ -13,9 +13,5 @@ public interface DAO<T> {
    T get(int ID);
    List<T> getAll();
    boolean delete(int ID);
-
-
-
-
-    void generate(Scanner sc);
+   void generate(Scanner sc);
 }

@@ -16,10 +16,10 @@ public class FlightController {
     public void showAllFlights(){
         flightService.displayAllFlights();
     }
-    public List<Flight> requestFlight(String Destination, Date DepartureTime, int numOfPassengers){
+    public List<Flight> requestFlight(String Destination, String DepartureTime, int numOfPassengers){
         return flightService.requestFlight(Destination,DepartureTime,numOfPassengers);
     }
-    public void showRequestedFlights(String Destination, Date DepartureTime, int numOfPassengers){
+    public void showRequestedFlights(String Destination, String DepartureTime, int numOfPassengers){
         flightService.displayRequestedFlights(Destination,DepartureTime,numOfPassengers);
     }
     public Flight getFlightByID(int ID){
