@@ -13,8 +13,8 @@ public interface DAO<T> {
    T get(int ID);
    List<T> getAll();
    boolean delete(int ID);
-   boolean delete(String ID);
-   T get(String ID);
+
+
 
 
     void generate(Scanner sc);

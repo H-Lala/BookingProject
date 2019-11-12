@@ -86,17 +86,6 @@ public class BookingDAO implements DAO<Booking> {
     }
 
     @Override
-    public boolean delete(String ID) {
-        return false;
-    }
-
-    @Override
-    public Booking get(String ID) {
-        return null;
-    }
-
-
-    @Override
     public void save(Booking item) {
         if (booking0fList != null) {
             if (booking0fList.contains(item)) {

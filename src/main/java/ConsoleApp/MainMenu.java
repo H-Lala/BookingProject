@@ -19,7 +19,8 @@ public class MainMenu {
 
     private static UserController userController = new UserController();
     private static BookingController bookingController = new BookingController();
-    private static FlightController flightController=new FlightController();
+    private static FlightController flightController = new FlightController();
+
     public static void MainMenu() {
         System.out.printf(
                 "1.Online Board\n"
@@ -53,26 +54,26 @@ public class MainMenu {
                     break;
                 case ShowTheFlightInfo:
                     System.out.println("Enter the ID of the flight:");
-                    int Id=sc.nextInt();
+                    int Id = sc.nextInt();
                     flightController.getFlightByID(Id);
                     break;
                 case SearchFlight:
                     System.out.println("Enter the destination, Departure time( in the format 'dd/mm/yyyy hh:mm')"
-                    +"and number of passengers");
-                    String Destination=sc.nextLine();
-                    String DepartureTime=sc.nextLine();
-                    Date depTime=flightController.StringToDate(DepartureTime);
-                    int numOfPassengers=sc.nextInt();
-                    flightController.showRequestedFlights(Destination,depTime,numOfPassengers);
+                            + "and number of passengers");
+                    String Destination = sc.nextLine();
+                    String DepartureTime = sc.nextLine();
+                    Date depTime = flightController.StringToDate(DepartureTime);
+                    int numOfPassengers = sc.nextInt();
+                    flightController.showRequestedFlights(Destination, depTime, numOfPassengers);
                     break;
                 case BookFlight:
                     System.out.println("Please enter destinations");
                     String destination = sc.nextLine();
                     System.out.println("Please, enter counts of tickets");
                     int tickets = sc.nextInt();
-                    Booking NewBooking = new Booking(destination,tickets);
+                    Booking NewBooking = new Booking(destination, tickets);
                     bookingController.save(NewBooking);
-                  //  bookingController.SaveData();
+                    //  bookingController.SaveData();
                     break;
                 case CancelBooking:
                     System.out.println("Please enter your ID");
@@ -96,11 +97,13 @@ public class MainMenu {
         System.out.println("Welcome! Do You have an acoount or not?");
         Scanner sc = new Scanner(System.in);
         String s = sc.nextLine();
-        switch (s.toLowerCase()){
+        switch (s.toLowerCase()) {
             case "yes":
-                userByReg();break;
+                userByReg();
+                break;
             case "no":
-                register(); break;
+                register();
+                break;
             default:
                 throw new IllegalArgumentException("Wrong answer");
 
@@ -109,7 +112,7 @@ public class MainMenu {
 
     private static void userByReg() {
         Scanner sc = new Scanner(System.in);
-        System.out.println( "Please enter your information");
+        System.out.println("Please enter your information");
         String UserName, password;
         System.out.println("User Name");
         UserName = sc.nextLine();
@@ -131,13 +134,14 @@ public class MainMenu {
         Gender gender = Gender.Female;
         System.out.println("Enter your name");
         name = sc.nextLine();
-       // System.out.println("Enter your surname");
+        // System.out.println("Enter your surname");
         //surname = sc.nextLine();
         System.out.println("Enter your password");
         password = sc.nextLine();
         Users NewUser = new Users(name, password);
         userController.save(NewUser);
     }
+
     public static void FlightsfromFile() throws FileNotFoundException {
         Scanner sc = new Scanner(new FileReader("C:/Users/User/IdeaProjects/BookingProject/src/main/java/Flights/FlightDatabase.txt"));
         flightController.generate(sc);

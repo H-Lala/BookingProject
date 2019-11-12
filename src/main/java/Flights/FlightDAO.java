@@ -14,7 +14,7 @@ public class FlightDAO implements DAO<Flight> {
 
 
     @Override
-    public void SaveData(java.lang.String file) {
+    public void SaveData(String file) {
 
     }
 
@@ -24,7 +24,7 @@ public class FlightDAO implements DAO<Flight> {
     }
 
     @Override
-    public void ReadData(java.lang.String file) {
+    public void ReadData(String file) {
 
     }
 
@@ -36,13 +36,10 @@ public class FlightDAO implements DAO<Flight> {
         flightList.add(flight);
     }
 
-    @Override
-    public Flight get(int ID) {
-        return null;
-    }
+
 
     @Override
-    public Flight get(String ID) {
+    public Flight get(int ID) {
         for (Flight flight : flightList) {
             if (flight.ID == ID) {
                 return flight;
@@ -56,15 +53,12 @@ public class FlightDAO implements DAO<Flight> {
         return flightList;
     }
 
-    @Override
-    public boolean delete(int ID) {
-        return false;
-    }
+
 
     @Override
-    public boolean delete(String ID) {
+    public boolean delete(int ID) {
         for (Flight flight : flightList) {
-            if (flight.ID.equals(ID)) {
+            if (flight.ID==ID) {
                 flightList.remove(flight);
                 return true;
             }
@@ -75,11 +69,11 @@ public class FlightDAO implements DAO<Flight> {
     @Override
     public void generate(Scanner sc) {
         while (sc.hasNext()) {
-            String ID = sc.nextLine();
-            java.lang.String Destination = sc.nextLine();
-            java.lang.String Departure = sc.nextLine();
-            int seats = sc.nextInt();
-            Flight NewFlight = new Flight(ID, Destination, Departure, seats);
+            int ID = sc.nextInt();
+            String Destination = sc.nextLine();
+            String Departure = sc.nextLine();
+            String id  = String.valueOf(ID);
+            Flight NewFlight = new Flight(id, Destination, Departure);
             flightList.add(NewFlight);
 
         }
