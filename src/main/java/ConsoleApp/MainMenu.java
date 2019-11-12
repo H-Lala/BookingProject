@@ -50,7 +50,7 @@ public class MainMenu {
             switch (command) {
                 case OnlineBoard:
                     FlightsfromFile();
-                    flightController.getAllFlights();
+                    flightController.showAllFlights();
                     break;
                 case ShowTheFlightInfo:
                     System.out.println("Enter the ID of the flight:");

@@ -26,8 +26,8 @@ public class Flight {
         this.seats = seats;
     }
 
-    public Flight(String id, String destination, String departure) {
-        this.ID=Integer.parseInt(id);
+    public Flight(int id, String destination, String departure) {
+        this.ID=id;
         this.Destination=destination;
         this.departureTime=departure;
     }
