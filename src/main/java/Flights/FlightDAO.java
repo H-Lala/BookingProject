@@ -44,8 +44,9 @@ public class FlightDAO implements DAO<Flight> {
             if (flight.ID == ID) {
                 return flight;
             }
+
         }
-        return null;
+         throw new IllegalArgumentException("Invalid ID");
     }
 
     @Override
@@ -70,10 +71,11 @@ public class FlightDAO implements DAO<Flight> {
     public void generate(Scanner sc) {
         while (sc.hasNext()) {
             int ID = sc.nextInt();
+            sc.nextLine();
             String Destination = sc.nextLine();
             String Departure = sc.nextLine();
-            String id  = String.valueOf(ID);
-            Flight NewFlight = new Flight(id, Destination, Departure);
+
+            Flight NewFlight = new Flight(ID, Destination, Departure);
             flightList.add(NewFlight);
 
         }

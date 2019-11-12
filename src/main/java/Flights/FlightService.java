@@ -25,7 +25,7 @@ public class FlightService {
         return flightDao.delete(ID);
     }
 
-    void displayAllFlights(){
+    public void displayAllFlights(){
         getAllFlights().stream().forEach(System.out::println);
     }
 
