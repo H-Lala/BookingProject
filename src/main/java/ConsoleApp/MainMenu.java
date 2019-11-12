@@ -9,6 +9,8 @@ import Users.UserController;
 import Users.UserDAO;
 import Users.UserService;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -18,8 +20,6 @@ public class MainMenu {
     private static UserController userController = new UserController();
     private static BookingController bookingController = new BookingController();
     private static FlightController flightController=new FlightController();
-
-    //FlightController flightController = new FlightController();
     public static void MainMenu() {
         System.out.printf(
                 "1.Online Board\n"
@@ -135,5 +135,10 @@ public class MainMenu {
         password = sc.nextLine();
         Users NewUser = new Users(name, password);
         userController.save(NewUser);
+    }
+    public static void FlightsfromFile() throws FileNotFoundException {
+        Scanner sc = new Scanner(new FileReader("C:\\Users\\User\\IdeaProjects\\BookingProject\\" +
+                "src\\main\\java\\Flights\\FlightsDatabase.txt"));
+        flightController.generate(sc);
     }
 }

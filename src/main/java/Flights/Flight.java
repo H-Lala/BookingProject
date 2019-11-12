@@ -8,11 +8,11 @@ import java.util.Date;
 public class Flight {
     public int ID;
     private  String Destination;
-    private Date departureTime;
+    private String departureTime;
     private int seats;
 
 
-    public Flight(int ID, String destination, Date departureTime, int seats) {
+    public Flight(int ID, String destination, String departureTime, int seats) {
         this.ID = ID;
         Destination = destination;
         /*SimpleDateFormat formatter =new SimpleDateFormat("dd.mm.yyyy hh:mm");
@@ -42,7 +42,7 @@ public class Flight {
         return seats;
     }
 
-    public Date getDepartureTime() {
+    public String getDepartureTime() {
         return departureTime;
     }
 
@@ -54,7 +54,7 @@ public class Flight {
     public String toString() {
         return "Flight Id: "+ID+"\t"
                 +"Destination: "+Destination+"\t"
-                +"Departure Time: "+new SimpleDateFormat("dd.mm.yyyy hh:mm").format(departureTime)+"\t"
+                +"Departure Time: "+departureTime+"\t"
                 +"Free Seats: "+seats;
     }
 }

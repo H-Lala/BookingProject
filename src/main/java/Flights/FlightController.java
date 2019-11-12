@@ -3,6 +3,7 @@ package Flights;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Scanner;
 
 public class FlightController {
     private FlightService flightService = new FlightService();
@@ -36,5 +37,9 @@ public class FlightController {
             System.out.println("Wrong date format!");
         }
         return null;
+    }
+
+    public void generate(Scanner sc) {
+      flightService.generate(sc);
     }
 }

@@ -3,6 +3,7 @@ package Flights;
 import java.util.Date;
 import java.util.List;
 import java.text.SimpleDateFormat;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class FlightService {
@@ -39,4 +40,7 @@ public class FlightService {
                 .forEach(System.out::println);
     }
 
+    public void generate(Scanner sc) {
+        flightDao.generate(sc);
+    }
 }

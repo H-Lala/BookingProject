@@ -1,6 +1,7 @@
 package DAO;
 
 import java.util.List;
+import java.util.Scanner;
 
 public interface DAO<T> {
 
@@ -14,7 +15,5 @@ public interface DAO<T> {
    boolean delete(int ID);
 
 
-
-
-
+    void generate(Scanner sc);
 }
