@@ -3,6 +3,7 @@ package Flights;
 import DAO.DAO;
 //import com.sun.org.apache.xpath.internal.operations.String;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -15,16 +16,61 @@ public class FlightDAO implements DAO<Flight> {
 
     @Override
     public void SaveData(java.lang.String file) {
-
+        LoadData(flightList);
     }
 
     @Override
     public void LoadData(List<Flight> list) {
+        File file = new File("/Users/User/IdeaProjects/BookingProject/FlightsDatabase.txt");
+        FileWriter fr = null;
+        try {
+            fr = new FileWriter(file);
+            fr.write(String.valueOf(list));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally{
+            //close resources
+            try {
+                fr.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
     }
 
     @Override
     public void ReadData(java.lang.String file) {
+        BufferedReader bufferedReader = null;
+        FileReader fileReader = null;
+        try {
+            fileReader = new FileReader(file);
+            bufferedReader = new BufferedReader(fileReader);
+            int val = 0;
+            while ((val = bufferedReader.read()) != -1) {
+                char c = (char) val;
+                //prints the character
+                System.out.print(c);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            if (fileReader != null) {
+                try {
+                    fileReader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (bufferedReader != null) {
+                try {
+                    bufferedReader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
 
     }
 
@@ -32,8 +78,10 @@ public class FlightDAO implements DAO<Flight> {
     @Override
     public void save(Flight item)//creating
     {
-        Flight flight = new Flight(item.getID(), item.getDestination(), item.getDepartureTime(), item.getSeats());//??????????
+        Flight flight = new Flight(item.getID(), item.getDestination(), item.getDepartureTime(), item.getSeats());
         flightList.add(flight);
+        SaveData("FlightsDatabase.txt");
+
     }
 
     @Override

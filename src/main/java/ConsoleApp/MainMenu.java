@@ -3,11 +3,13 @@ package ConsoleApp;
 import Booking.Booking;
 import Booking.BookingController;
 import Enums.Gender;
+import Flights.Flight;
 import Flights.FlightController;
 import Users.Users;
 import Users.UserController;
 import Users.UserDAO;
 import Users.UserService;
+//import sun.util.resources.ext.CalendarData_da;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -36,6 +38,8 @@ public class MainMenu {
     }
 
     public static void main(String[] args) {
+        MainMenu menu=new MainMenu();
+        menu.addFlight();
         login();
         Scanner sc = new Scanner(System.in);
         String choice;
@@ -92,7 +96,7 @@ public class MainMenu {
     }
 
     private static void login() {
-        System.out.println("Welcome! Do You have an acoount or not?");
+        System.out.println("Welcome! Do You have an account or not?");
         Scanner sc = new Scanner(System.in);
         String s = sc.nextLine();
         switch (s.toLowerCase()){
@@ -141,5 +145,9 @@ public class MainMenu {
         Scanner sc = new Scanner(new FileReader("C:\\Users\\User\\IdeaProjects\\BookingProject\\" +
                 "src\\main\\java\\Flights\\FlightsDatabase.txt"));
         flightController.generate(sc);
+    }
+    public void addFlight(){
+        Flight flight=new Flight(56,"Moscow","13.11.2019 13:45",40);
+        flightController.createNewFlight(flight);
     }
 }

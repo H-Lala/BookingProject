@@ -10,12 +10,15 @@ public class FlightController {
     public void createNewFlight(Flight item){
         flightService.createNew(item);
     }
+
     public List<Flight> getAllFlights(){
         return flightService.getAllFlights();
     }
+
     public void showAllFlights(){
         flightService.displayAllFlights();
     }
+
     public List<Flight> requestFlight(String Destination, Date DepartureTime, int numOfPassengers){
         return flightService.requestFlight(Destination,DepartureTime,numOfPassengers);
     }
