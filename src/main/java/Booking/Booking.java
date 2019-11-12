@@ -15,6 +15,11 @@ public class Booking implements Serializable {
     private LocalDateTime bookingDate = LocalDateTime.now();
     private List<Users> passengers = new ArrayList<>();
     private List<Flight> flights = new ArrayList<>();
+    private String destination;
+
+    public Booking() {
+
+    }
 
 
     public void setTickets(int tickets) {
@@ -32,6 +37,14 @@ public class Booking implements Serializable {
 
     public List<Flight> getFlights() {
         return flights;
+    }
+
+    public void setDestination(String destination) {
+        this.destination = destination;
+    }
+
+    public String getDestination() {
+        return destination;
     }
 
     public void setPassenger(List<Users> passengers) {
@@ -53,15 +66,10 @@ public class Booking implements Serializable {
         this.tickets = tickets;
 
     }
-
-    public boolean addPerson(Users passenger) {
-        if (!passengers.contains(passenger) &&
-                passenger != null) {
-            passengers.add(passenger);
-            return true;
-        } else return false;
+    public Booking(String destination,int tickets){
+        this.destination=destination;
+        this.tickets=tickets;
     }
-
     public boolean deletePassenger(Users passenger) {
         if (!passengers.contains(passenger)) return false;
         passengers.remove(passenger);

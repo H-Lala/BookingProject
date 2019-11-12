@@ -1,5 +1,6 @@
 package ConsoleApp;
 
+import Booking.Booking;
 import Booking.BookingController;
 import Enums.Gender;
 import Users.Users;
@@ -12,7 +13,6 @@ import java.util.Scanner;
 public class MainMenu {
 
 
-    private static UserService userService = new UserService();
     private static UserController userController = new UserController();
     private static BookingController bookingController = new BookingController();
 
@@ -21,10 +21,11 @@ public class MainMenu {
         System.out.printf(
                 "1.Online Board\n"
                         + "2.Show the Flight Info\n"
-                        + "3.Search and Book a flight\n"
+                        + "3.Search flight\n"
                         + "4.Booking \n"
-                        + "6.Cancel booking"
-                        + "7.My Flights\n"
+                        + "5.Cancel booking\n"
+                        + "6.My Flights\n"
+                        + "7.Help\n"
                         + "8.Exit\n"
 
         );
@@ -33,9 +34,6 @@ public class MainMenu {
 
     public static void main(String[] args) {
         login();
-        register();
-        userByReg();
-
         Scanner sc = new Scanner(System.in);
         String choice;
         System.out.printf("Welcome, Please choose your operation from menu\n");
@@ -52,22 +50,31 @@ public class MainMenu {
                     //
                     break;
                 case SearchFlight:
-
+                  //
                     break;
                 case BookFlight:
+                    System.out.println("Please enter destinations");
+                    String destination = sc.nextLine();
+                    System.out.println("Please, enter counts of tickets");
+                    int tickets = sc.nextInt();
+                    Booking NewBooking = new Booking(destination,tickets);
+                    bookingController.save(NewBooking);
+                  //  bookingController.SaveData();
                     break;
                 case CancelBooking:
+                    System.out.println("Please enter your ID");
+                    int ID = sc.nextInt();
+                    bookingController.delete(ID);
                     break;
                 case MyFlights:
                     break;
                 case Help:
+                    System.out.println("How can I help you?");
                     break;
                 case Exits:
                     System.exit(0);
                     break;
             }
-            break;
-
         } while (true);
     }
 
@@ -115,6 +122,6 @@ public class MainMenu {
         System.out.println("Enter your password");
         password = sc.nextLine();
         Users NewUser = new Users(name, password);
-        userService.save(NewUser);
+        userController.save(NewUser);
     }
 }

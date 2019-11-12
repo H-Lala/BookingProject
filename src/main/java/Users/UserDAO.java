@@ -4,12 +4,13 @@ package Users;
 import DAO.DAO;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
 public class UserDAO implements User_DAO<Users> {
     private static Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
-    private List<Users> users;
+    private List<Users> users=new ArrayList<>();
 
     public UserDAO(List<Users> users) {
         this.users = users;
@@ -72,10 +73,12 @@ public class UserDAO implements User_DAO<Users> {
         }
        else if (this.users.contains(item)) {
             logger.info("Editing of user information");
-            this.users.set(users.indexOf(item), item);
+            users.set(users.indexOf(item), item);
         } else {
             logger.info("Saving new user");
-            this.users.add(item);
+            Users user = new Users(item.getName(),item.getPassword());
+
+            users.add(item);
         }
 
     }

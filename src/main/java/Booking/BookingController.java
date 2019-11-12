@@ -18,6 +18,7 @@ public class BookingController {
     }
 
     public void save(Booking booking) {
+        System.out.println("Saving new booking");
         bookingServise.save(booking);
     }
 

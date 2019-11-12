@@ -20,7 +20,7 @@ public class CommandParser {
            case "7":
                return commands[6]; //Help
            case "8":
-               System.exit(0);
+               return commands[7]; //Exit
            default:
                throw new IllegalArgumentException("This operation doesn't exist");
        }

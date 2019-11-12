@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BookingDAO implements DAO<Booking> {
-    private List<Booking> booking0fList;
+    private List<Booking> booking0fList = new ArrayList<>();
 
     public BookingDAO(List<Booking> booking0fList) {
         this.booking0fList = booking0fList;
@@ -70,12 +70,13 @@ public class BookingDAO implements DAO<Booking> {
 
     @Override
     public boolean delete(int ID) {
+        System.out.println("Cancel of booking");
         boolean result = false;
         if (ID >= 0 && ID < booking0fList.size()) {
             booking0fList.remove(ID);
             result = true;
         }
-        return result;
+        throw new IllegalArgumentException("Invalid ID");
     }
 
 
