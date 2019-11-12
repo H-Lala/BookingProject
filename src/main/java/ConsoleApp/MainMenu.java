@@ -3,13 +3,13 @@ package ConsoleApp;
 import Booking.Booking;
 import Booking.BookingController;
 import Enums.Gender;
+import Flights.FlightController;
 import Users.Users;
 import Users.UserController;
 import Users.UserDAO;
 import Users.UserService;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.util.Date;
 import java.util.Scanner;
 
 public class MainMenu {
@@ -17,6 +17,7 @@ public class MainMenu {
 
     private static UserController userController = new UserController();
     private static BookingController bookingController = new BookingController();
+    private static FlightController flightController=new FlightController();
 
     //FlightController flightController = new FlightController();
     public static void MainMenu() {
@@ -46,13 +47,21 @@ public class MainMenu {
         do {
             switch (command) {
                 case OnlineBoard:
-                    //
+                    flightController.getAllFlights();
                     break;
                 case ShowTheFlightInfo:
-                    //
+                    System.out.println("Enter the ID of the flight:");
+                    int Id=sc.nextInt();
+                    flightController.getFlightByID(Id);
                     break;
                 case SearchFlight:
-                  //
+                    System.out.println("Enter the destination, Departure time( in the format 'dd/mm/yyyy hh:mm')"
+                    +"and number of passengers");
+                    String Destination=sc.nextLine();
+                    String DepartureTime=sc.nextLine();
+                    Date depTime=flightController.StringToDate(DepartureTime);
+                    int numOfPassengers=sc.nextInt();
+                    flightController.showRequestedFlights(Destination,depTime,numOfPassengers);
                     break;
                 case BookFlight:
                     System.out.println("Please enter destinations");
@@ -77,7 +86,7 @@ public class MainMenu {
                     System.exit(0);
                     break;
             }
-            MainMenu();
+            break;
         } while (true);
     }
 
@@ -126,8 +135,5 @@ public class MainMenu {
         password = sc.nextLine();
         Users NewUser = new Users(name, password);
         userController.save(NewUser);
-    }
-    public static void FlightsfromFile() throws FileNotFoundException {
-        Scanner sc = new Scanner(new FileReader("C:\\Users\\User\\IdeaProjects\\BookingProject\\src\\main\\java\\Flights\\FlightDatabase.txt"));
     }
 }
