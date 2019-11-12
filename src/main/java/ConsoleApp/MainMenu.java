@@ -8,6 +8,8 @@ import Users.UserController;
 import Users.UserDAO;
 import Users.UserService;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.Scanner;
 
 public class MainMenu {
@@ -75,6 +77,7 @@ public class MainMenu {
                     System.exit(0);
                     break;
             }
+            MainMenu();
         } while (true);
     }
 
@@ -123,5 +126,8 @@ public class MainMenu {
         password = sc.nextLine();
         Users NewUser = new Users(name, password);
         userController.save(NewUser);
+    }
+    public static void FlightsfromFile() throws FileNotFoundException {
+        Scanner sc = new Scanner(new FileReader("C:\\Users\\User\\IdeaProjects\\BookingProject\\src\\main\\java\\Flights\\FlightDatabase.txt"));
     }
 }
