@@ -5,6 +5,7 @@ import DAO.DAO;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class BookingDAO implements DAO<Booking> {
     private List<Booking> booking0fList = new ArrayList<>();
@@ -34,6 +35,11 @@ public class BookingDAO implements DAO<Booking> {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+    }
+
+    @Override
+    public void generate(Scanner sc) {
 
     }
 
