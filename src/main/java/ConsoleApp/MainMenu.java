@@ -35,7 +35,7 @@ public class MainMenu {
 
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         login();
         Scanner sc = new Scanner(System.in);
         String choice;
@@ -48,6 +48,7 @@ public class MainMenu {
             CommandList command = CommandParser.Parse(choice);
             switch (command) {
                 case OnlineBoard:
+                    FlightsfromFile();
                     flightController.getAllFlights();
                     break;
                 case ShowTheFlightInfo:
@@ -139,7 +140,7 @@ public class MainMenu {
     }
     public static void FlightsfromFile() throws FileNotFoundException {
         Scanner sc = new Scanner(new FileReader("C:\\Users\\User\\IdeaProjects\\BookingProject\\" +
-                "src\\main\\java\\Flights\\FlightsDatabase.txt"));
+                "src\\main\\java\\Flights\\FlightsDatabase"));
         flightController.generate(sc);
     }
 }
