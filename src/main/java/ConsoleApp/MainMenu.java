@@ -139,8 +139,7 @@ public class MainMenu {
         userController.save(NewUser);
     }
     public static void FlightsfromFile() throws FileNotFoundException {
-        Scanner sc = new Scanner(new FileReader("C:\\Users\\User\\IdeaProjects\\BookingProject\\" +
-                "src\\main\\java\\Flights\\FlightsDatabase"));
+        Scanner sc = new Scanner(new FileReader("C:/Users/User/IdeaProjects/BookingProject/src/main/java/Flights/FlightDatabase.txt"));
         flightController.generate(sc);
     }
 }
