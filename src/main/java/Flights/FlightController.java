@@ -1,5 +1,6 @@
 package Flights;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -26,5 +27,14 @@ public class FlightController {
     public boolean deleteFlight(int ID){
         return flightService.delete(ID);
     }
-
+    public Date StringToDate(String s1){
+        try{
+            Date date1=new SimpleDateFormat("dd.MM.yyyy hh:mm").parse(s1);
+            return date1;
+        }
+        catch(Exception e){
+            System.out.println("Wrong date format!");
+        }
+        return null;
+    }
 }
