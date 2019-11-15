@@ -44,7 +44,7 @@ public class MainMenu {
         String choice;
         System.out.printf("Welcome, Please choose your operation from menu\n");
         MainMenu();
-        do {
+        while(true){
             System.out.println("Enter your choice");
             choice = sc.nextLine();
             CommandList command = CommandParser.Parse(choice);
@@ -52,33 +52,34 @@ public class MainMenu {
                 case OnlineBoard:
                     flightController.showAllFlights();
                     break;
-                case ShowTheFlightInfo:
+                case ShowTheFlightInfo: {
                     System.out.println("Enter the ID of the flight:");
                     int Id = sc.nextInt();
+                    sc.nextLine();
                     System.out.println(flightController.getFlightByID(Id));
-                    break;
-                case SearchFlight:
+                }break;
+                case SearchFlight: {
                     System.out.println("Enter the destination, Departure time( in the format 'dd/mm/yyyy hh:mm')"
                             + "and number of passengers");
                     String Destination = sc.nextLine();
                     String DepartureTime = sc.nextLine();
                     int numOfPassengers = sc.nextInt();
                     flightController.showRequestedFlights(Destination, DepartureTime, numOfPassengers);
-                    break;
-                case BookFlight:
+                }break;
+                case BookFlight: {
                     System.out.println("Please enter destinations");
                     String destination = sc.nextLine();
                     System.out.println("Please, enter counts of tickets");
                     int tickets = sc.nextInt();
-                    Booking NewBooking = new Booking(rand.generate_random(),destination, tickets);
+                    Booking NewBooking = new Booking(rand.generate_random(), destination, tickets);
                     bookingController.save(NewBooking);
-                    break;
-                case CancelBooking:
+                }break;
+                case CancelBooking: {
                     System.out.println("Please enter ID of booking");
                     int ID = sc.nextInt();
                     bookingController.delete(ID);
                     System.out.println("Deleted successfully!");
-                    break;
+                }break;
                 case MyFlights:
                     System.out.println(bookingController.getAllBookings());
                     break;
@@ -88,11 +89,12 @@ public class MainMenu {
                 case Exits:
                     System.exit(0);
                     break;
+                default:throw  new IllegalArgumentException("Error") ;
             }
             MainMenu();
-            choice = sc.nextLine();
 
-        } while (true);
+        }
+
     }
 
     private static void login() throws IOException {
