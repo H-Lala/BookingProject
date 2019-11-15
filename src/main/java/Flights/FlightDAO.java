@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 
 public class FlightDAO implements DAO<Flight> {
-    List<Flight> flightList = new ArrayList<>();
+    List<Flight> flightList = new ArrayList<Flight>();
 
 
     @Override
@@ -38,7 +38,7 @@ public class FlightDAO implements DAO<Flight> {
     public Flight get(int ID) {
         for (Flight flight : flightList) {
             if (flight.ID == ID) {
-                return flightList.get(ID);
+                return flight;
             }
 
         }

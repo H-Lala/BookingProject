@@ -53,7 +53,7 @@ public class MainMenu {
                 case ShowTheFlightInfo:
                     System.out.println("Enter the ID of the flight:");
                     int Id = sc.nextInt();
-                    flightController.getFlightByID(Id);
+                    System.out.println(flightController.getFlightByID(Id));
                     break;
                 case SearchFlight:
                     System.out.println("Enter the destination, Departure time( in the format 'dd/mm/yyyy hh:mm')"
