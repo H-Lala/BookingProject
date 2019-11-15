@@ -40,11 +40,11 @@ public class MainMenu {
         Scanner sc = new Scanner(System.in);
         String choice;
         System.out.printf("Welcome, Please choose your operation from menu\n");
-
+        MainMenu();
+        choice = sc.nextLine();
         do {
-            MainMenu();
             System.out.println("Enter your choice");
-            choice = sc.nextLine();
+           // choice = sc.nextLine();
             CommandList command = CommandParser.Parse(choice);
             switch (command) {
                 case OnlineBoard:
@@ -86,6 +86,8 @@ public class MainMenu {
                     System.exit(0);
                     break;
             }
+            MainMenu();
+            choice = sc.nextLine();
 
         } while (true);
     }
