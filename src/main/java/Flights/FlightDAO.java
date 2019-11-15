@@ -40,14 +40,13 @@ public class FlightDAO implements DAO<Flight> {
             if (flight.ID == ID) {
                 return flight;
             }
-
         }
         throw new IllegalArgumentException("Invalid ID");
     }
 
     @Override
     public List<Flight> getAll() {
-        return flightList;
+        return (flightList);
     }
 
 

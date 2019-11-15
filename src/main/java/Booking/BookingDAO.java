@@ -92,6 +92,7 @@ public class BookingDAO implements DAO<Booking> {
                 booking0fList.set(booking0fList.indexOf(item), item);
             } else {
                 booking0fList.add(item);
+                System.out.println("Booking already saved");
             }
         }
 
