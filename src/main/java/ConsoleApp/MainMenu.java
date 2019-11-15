@@ -34,6 +34,7 @@ public class MainMenu {
     }
 
     public static void main(String[] args) throws FileNotFoundException {
+        RandomIDGenerator rand=new RandomIDGenerator();
         ByUs.Message();
         FlightsfromFile();
         login();
@@ -67,13 +68,14 @@ public class MainMenu {
                     String destination = sc.nextLine();
                     System.out.println("Please, enter counts of tickets");
                     int tickets = sc.nextInt();
-                    Booking NewBooking = new Booking(destination, tickets);
+                    Booking NewBooking = new Booking(rand.generate_random(),destination, tickets);
                     bookingController.save(NewBooking);
                     break;
                 case CancelBooking:
-                    System.out.println("Please enter your ID");
+                    System.out.println("Please enter ID of booking");
                     int ID = sc.nextInt();
                     bookingController.delete(ID);
+                    System.out.println("Deleted successfully!");
                     break;
                 case MyFlights:
                     System.out.println(bookingController.getAllBookings());

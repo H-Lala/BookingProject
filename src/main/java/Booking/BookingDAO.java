@@ -64,10 +64,6 @@ public class BookingDAO implements DAO<Booking> {
 
     }
 
-    @Override
-    public Booking get(int ID) {
-        return null;
-    }
 
     @Override
     public List<Booking> getAll() {
@@ -76,14 +72,15 @@ public class BookingDAO implements DAO<Booking> {
 
     @Override
     public boolean delete(int ID) {
-        System.out.println("Cancel of booking");
-        boolean result = false;
-        if (ID >= 0 && ID < booking0fList.size()) {
-            booking0fList.remove(ID);
-            result = true;
+        for(Booking booking: booking0fList){
+            if(booking.ID==ID){
+                booking0fList.remove(booking);
+                return true;
+            }
         }
-        throw new IllegalArgumentException("Invalid ID");
+        return false;
     }
+
 
     @Override
     public void save(Booking item) {
@@ -96,6 +93,11 @@ public class BookingDAO implements DAO<Booking> {
             }
         }
 
+    }
+
+    @Override
+    public Booking get(int ID) {
+        return booking0fList.get((booking0fList.indexOf(ID)));
     }
 
     @Override

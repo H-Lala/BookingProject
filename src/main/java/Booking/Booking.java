@@ -10,18 +10,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Booking implements Serializable {
-
+    public int ID;
     private int tickets;
     private LocalDateTime bookingDate = LocalDateTime.now();
     private List<Users> passengers = new ArrayList<>();
     private List<Flight> flights = new ArrayList<>();
     private String destination;
 
+
     public Booking() {
 
     }
 
-
+    public void setID(int ID){ this.ID=ID; }
+    public int getID(){ return ID; }
     public void setTickets(int tickets) {
         this.tickets = tickets;
     }
@@ -60,13 +62,15 @@ public class Booking implements Serializable {
         return bookingDate;
     }
 
-    public Booking(List<Flight> flights, List<Users> passenger, int tickets) {
+    public Booking(int ID, List<Flight> flights, List<Users> passenger, int tickets) {
+        this.ID=ID;
         this.flights = flights;
         this.passengers = passenger;
         this.tickets = tickets;
 
     }
-    public Booking(String destination,int tickets){
+    public Booking(int ID,String destination,int tickets){
+        this.ID=ID;
         this.destination=destination;
         this.tickets=tickets;
     }
@@ -88,8 +92,8 @@ public class Booking implements Serializable {
     @Override
     public String toString() {
         return
-                String.format("Booking{Destination: %s   Counts of Tickets:  %d " +
-                                "Data Time: %s", destination,tickets,
+                String.format("Booking{ID: %d   Destination: %s   Counts of Tickets:  %d " +
+                                "Data Time: %s",ID, destination,tickets,
                         bookingDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")));
     }
 }
