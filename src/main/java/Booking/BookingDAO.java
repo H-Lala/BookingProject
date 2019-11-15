@@ -71,7 +71,7 @@ public class BookingDAO implements DAO<Booking> {
 
     @Override
     public List<Booking> getAll() {
-        return booking0fList;
+        return (booking0fList);
     }
 
     @Override
