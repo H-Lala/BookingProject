@@ -7,10 +7,8 @@ import Flights.FlightController;
 import Users.Users;
 import Users.ByUs;
 import Users.UserController;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+
+import java.io.*;
 import java.util.Scanner;
 
 public class MainMenu {
@@ -36,7 +34,7 @@ public class MainMenu {
     }
 
     public static void main(String[] args) throws IOException {
-        RandomIDGenerator rand=new RandomIDGenerator();
+        RandomIDGenerator rand = new RandomIDGenerator();
         ByUs.Message();
         FlightsfromFile();
         login();
@@ -44,7 +42,7 @@ public class MainMenu {
         String choice;
         System.out.printf("Welcome, Please choose your operation from menu\n");
         MainMenu();
-        while(true){
+        while (true) {
             System.out.println("Enter your choice");
             choice = sc.nextLine();
             CommandList command = CommandParser.Parse(choice);
@@ -57,7 +55,8 @@ public class MainMenu {
                     int Id = sc.nextInt();
                     sc.nextLine();
                     System.out.println(flightController.getFlightByID(Id));
-                }break;
+                }
+                break;
                 case SearchFlight: {
                     System.out.println("Enter the destination, Departure time( in the format 'dd/mm/yyyy hh:mm')"
                             + "and number of passengers");
@@ -65,7 +64,8 @@ public class MainMenu {
                     String DepartureTime = sc.nextLine();
                     int numOfPassengers = sc.nextInt();
                     flightController.showRequestedFlights(Destination, DepartureTime, numOfPassengers);
-                }break;
+                }
+                break;
                 case BookFlight: {
                     System.out.println("Please enter destinations");
                     String destination = sc.nextLine();
@@ -73,13 +73,15 @@ public class MainMenu {
                     int tickets = sc.nextInt();
                     Booking NewBooking = new Booking(rand.generate_random(), destination, tickets);
                     bookingController.save(NewBooking);
-                }break;
+                }
+                break;
                 case CancelBooking: {
                     System.out.println("Please enter ID of booking");
                     int ID = sc.nextInt();
                     bookingController.delete(ID);
                     System.out.println("Deleted successfully!");
-                }break;
+                }
+                break;
                 case MyFlights:
                     System.out.println(bookingController.getAllBookings());
                     break;
@@ -89,7 +91,8 @@ public class MainMenu {
                 case Exits:
                     System.exit(0);
                     break;
-                default:throw  new IllegalArgumentException("Error") ;
+                default:
+                    throw new IllegalArgumentException("Error");
             }
             MainMenu();
 
@@ -114,26 +117,33 @@ public class MainMenu {
         }
     }
 
-    private static void userByReg() {
+    private static void userByReg() throws IOException {
+        BufferedReader read = new BufferedReader(new FileReader("user.txt"));
         Scanner sc = new Scanner(System.in);
         System.out.println("Please enter your information");
         String UserName, password;
         System.out.println("User Name");
         UserName = sc.nextLine();
-        System.out.println("Enter your password");
+       System.out.println("Enter your password");
         password = sc.nextLine();
+        String s = UserName.concat(password);
         try {
+            while (read.readLine() != null) {
+
+            }
+
             userController.userByReg(UserName, password);
 
         } catch (Exception e) {
             System.out.println("Wrong name or password");
             userByReg();
         }
+        read.close();
     }
 
     private static void register() throws IOException {
         Scanner sc = new Scanner(System.in);
-        FileWriter fileWriter = new FileWriter("user.txt");
+        FileWriter fileWriter = new FileWriter("user.txt",true);
         System.out.println("Please, enter your information");
         String name, surname, password;
         Gender gender = Gender.Female;
@@ -141,12 +151,14 @@ public class MainMenu {
         name = sc.nextLine();
         System.out.println("Enter your password");
         password = sc.nextLine();
-        try{
+        try {
+            fileWriter.write(System.lineSeparator());
             fileWriter.write(name);
+           fileWriter.write(System.lineSeparator());
             fileWriter.write(password);
             System.out.println("Saving new user");
             fileWriter.close();
-        }catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
 
         }
