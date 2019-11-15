@@ -76,7 +76,7 @@ public class MainMenu {
                     bookingController.delete(ID);
                     break;
                 case MyFlights:
-                    flightController.getAllFlights();
+                    System.out.println(bookingController.getAllBookings());
                     break;
                 case Help:
                     System.out.println("How can I help you?");
