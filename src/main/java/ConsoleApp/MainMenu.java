@@ -9,6 +9,8 @@ import Users.ByUs;
 import Users.UserController;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class MainMenu {
@@ -33,7 +35,7 @@ public class MainMenu {
 
     }
 
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws IOException {
         RandomIDGenerator rand=new RandomIDGenerator();
         ByUs.Message();
         FlightsfromFile();
@@ -93,7 +95,7 @@ public class MainMenu {
         } while (true);
     }
 
-    private static void login() {
+    private static void login() throws IOException {
         System.out.println("Welcome! Do You have an acoount or not?");
         Scanner sc = new Scanner(System.in);
         String s = sc.nextLine();
@@ -127,8 +129,9 @@ public class MainMenu {
         }
     }
 
-    private static void register() {
+    private static void register() throws IOException {
         Scanner sc = new Scanner(System.in);
+        FileWriter fileWriter = new FileWriter("user.txt");
         System.out.println("Please, enter your information");
         String name, surname, password;
         Gender gender = Gender.Female;
@@ -136,6 +139,15 @@ public class MainMenu {
         name = sc.nextLine();
         System.out.println("Enter your password");
         password = sc.nextLine();
+        try{
+            fileWriter.write(name);
+            fileWriter.write(password);
+            System.out.println("Saving new user");
+            fileWriter.close();
+        }catch (IOException e){
+            e.printStackTrace();
+
+        }
         Users NewUser = new Users(name, password);
         userController.save(NewUser);
 
