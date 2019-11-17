@@ -9,7 +9,7 @@ public interface DAO<T> {
    void LoadData(List<T> list);
    void ReadData(String file);
 
-   void save(T item);//create
+   void save(T item);
    T get(int ID);
    List<T> getAll();
    boolean delete(int ID);

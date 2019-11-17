@@ -47,17 +47,17 @@ public class MainMenu {
             choice = sc.nextLine();
             CommandList command = CommandParser.Parse(choice);
             switch (command) {
-                case OnlineBoard:
+                case Online_Board:
                     flightController.showAllFlights();
                     break;
-                case ShowTheFlightInfo: {
+                case Show_The_Flight_Info: {
                     System.out.println("Enter the ID of the flight:");
                     int Id = sc.nextInt();
                     sc.nextLine();
                     System.out.println(flightController.getFlightByID(Id));
                 }
                 break;
-                case SearchFlight: {
+                case Search_Flight: {
                     System.out.println("Enter the destination, Departure time( in the format 'dd/mm/yyyy hh:mm')"
                             + "and number of passengers");
                     String Destination = sc.nextLine();
@@ -68,7 +68,7 @@ public class MainMenu {
                 }
 
                 break;
-                case BookFlight: {
+                case Book_Flight: {
                     System.out.println("Please enter destinations");
                     String destination = sc.nextLine();
                     System.out.println("Please, enter counts of tickets");
@@ -78,7 +78,7 @@ public class MainMenu {
                     sc.nextLine();
                 }
                 break;
-                case CancelBooking: {
+                case Cancel_Booking: {
                     System.out.println("Please enter ID of booking");
                     int ID = sc.nextInt();
                     bookingController.delete(ID);
@@ -86,7 +86,7 @@ public class MainMenu {
                     sc.nextLine();
                 }
                 break;
-                case MyFlights:
+                case My_Flights:
                     System.out.println(bookingController.getAllBookings());
                     break;
                 case Help:
