@@ -64,7 +64,9 @@ public class MainMenu {
                     String DepartureTime = sc.nextLine();
                     int numOfPassengers = sc.nextInt();
                     flightController.showRequestedFlights(Destination, DepartureTime, numOfPassengers);
+                    sc.nextLine();
                 }
+
                 break;
                 case BookFlight: {
                     System.out.println("Please enter destinations");
@@ -73,6 +75,7 @@ public class MainMenu {
                     int tickets = sc.nextInt();
                     Booking NewBooking = new Booking(rand.generate_random(), destination, tickets);
                     bookingController.save(NewBooking);
+                    sc.nextLine();
                 }
                 break;
                 case CancelBooking: {
@@ -80,6 +83,7 @@ public class MainMenu {
                     int ID = sc.nextInt();
                     bookingController.delete(ID);
                     System.out.println("Deleted successfully!");
+                    sc.nextLine();
                 }
                 break;
                 case MyFlights:
